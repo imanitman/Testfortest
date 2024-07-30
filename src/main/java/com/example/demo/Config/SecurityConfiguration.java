@@ -43,8 +43,9 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(
                 authz -> authz
                 .requestMatchers("/auth/login").permitAll()
-                .requestMatchers("/homepage").permitAll()
+                // .requestMatchers("/users").permitAll()
                 .anyRequest().authenticated())
+                
             .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults())
                 .authenticationEntryPoint(customAuthenticationEntryPoint))
             .formLogin(f->f.disable())
