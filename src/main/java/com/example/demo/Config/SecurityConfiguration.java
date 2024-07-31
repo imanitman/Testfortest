@@ -42,8 +42,8 @@ public class SecurityConfiguration {
             .cors(Customizer.withDefaults())
             .authorizeHttpRequests(
                 authz -> authz
+                .requestMatchers("/**").permitAll()
                 .requestMatchers("/auth/login").permitAll()
-                // .requestMatchers("/users").permitAll()
                 .anyRequest().authenticated())
                 
             .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults())
@@ -89,7 +89,5 @@ public class SecurityConfiguration {
         byte[] keyBytes = Base64.from(jwtKey).decode();
         return new SecretKeySpec(keyBytes, 0, keyBytes.length,
                 SecurityUtil.JWT_ALGORITHM.getName());
-
-    }
-    
+    }  
 }

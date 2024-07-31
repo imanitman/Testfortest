@@ -39,7 +39,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                 .map(Throwable::getMessage)
                 .orElse(authException.getMessage());
         res.setError(errorMessage);
-        res.setMessage("Token is not available");
+        res.setMessage("Token is not available here");
 
         objectMapper.writeValue(response.getWriter(), res);
     }
